@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount Homeland::Engine, at: "/homeland"
   root to: 'static_pages#index'
   resources :users
   devise_for :users, path: 'account', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' },

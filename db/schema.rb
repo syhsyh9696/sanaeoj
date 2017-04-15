@@ -11,7 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412092454) do
+ActiveRecord::Schema.define(version: 20170415073548) do
+
+  create_table "homeland_nodes", force: :cascade do |t|
+    t.string   "name",                     null: false
+    t.string   "description"
+    t.string   "color"
+    t.integer  "sort",         default: 0, null: false
+    t.integer  "topics_count", default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "homeland_nodes", ["sort"], name: "index_homeland_nodes_on_sort"
+
+  create_table "homeland_replies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.text     "body"
+    t.text     "body_html"
+    t.datetime "deleted_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "reply_to_id"
+  end
+
+  add_index "homeland_replies", ["reply_to_id"], name: "index_homeland_replies_on_reply_to_id"
+  add_index "homeland_replies", ["topic_id"], name: "index_homeland_replies_on_topic_id"
+  add_index "homeland_replies", ["user_id"], name: "index_homeland_replies_on_user_id"
+
+  create_table "homeland_topics", force: :cascade do |t|
+    t.integer  "node_id",                        null: false
+    t.integer  "user_id",                        null: false
+    t.string   "title",                          null: false
+    t.text     "body"
+    t.text     "body_html"
+    t.integer  "last_reply_id"
+    t.integer  "last_reply_user_id"
+    t.integer  "last_active_mark",   default: 0, null: false
+    t.datetime "replied_at"
+    t.integer  "replies_count",      default: 0, null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "homeland_topics", ["deleted_at"], name: "index_homeland_topics_on_deleted_at"
+  add_index "homeland_topics", ["last_active_mark", "deleted_at"], name: "index_homeland_topics_on_last_active_mark_and_deleted_at"
+  add_index "homeland_topics", ["node_id", "deleted_at"], name: "index_homeland_topics_on_node_id_and_deleted_at"
+  add_index "homeland_topics", ["node_id", "last_active_mark"], name: "index_homeland_topics_on_node_id_and_last_active_mark"
+  add_index "homeland_topics", ["user_id"], name: "index_homeland_topics_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

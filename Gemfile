@@ -32,6 +32,11 @@ gem 'annotate'
 gem 'bootstrap-sass'
 # devise bootstrap样式
 gem 'devise-bootstrap-views'
+# homeland 论坛
+gem "homeland"
+gem 'font-awesome-sass-rails'
+# homeland 依赖 github-markup 可换用
+gem 'github-markup'
 
 
 # Use ActiveModel has_secure_password
@@ -55,4 +60,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
