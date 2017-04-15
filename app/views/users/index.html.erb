@@ -1,0 +1,17 @@
+
+<table>
+<tr>
+  <th>#</th>
+  <th>用户名</th>
+  <th>昵称</th>
+  <th>Motto</th>
+</tr>
+<% @users.each do |user| %>
+<tr>
+  <td><%= user.id %></td>
+  <td><%= link_to  user.username, user_path(user) %></td>
+  <td><%= user.nickname %></td>
+  <td><%= user.motto %></td>
+</tr>
+<% end %>
+</table>

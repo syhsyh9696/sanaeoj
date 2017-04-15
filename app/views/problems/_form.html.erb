@@ -1,0 +1,82 @@
+<%= form_for(@problem) do |f| %>
+
+  <% if @problem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this problem from being saved:</h2>
+      <ul>
+        <% @problem.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.select :ptype, [ ["[0]Normal Judge", 0], ["[1]Special Judge", 1] ] %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :timelimit %><br />
+    <%= f.text_field :timelimit, type: "number", min: "1", max:"100000" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :memlimit %><br />
+    <%= f.text_field :memlimit, type: "number", min: "1", max:"655360" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :input %><br />
+    <%= f.text_area :input %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :output %><br />
+    <%= f.text_area :output %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :samplein %><br />
+    <%= f.text_area :samplein %>
+  </div>  
+  
+  <div class="field">
+    <%= f.label :sampleout %><br />
+    <%= f.text_area :sampleout %>
+  </div>
+
+  <div class="field">
+    <%= f.label :hint %><br />
+    <%= f.text_field :hint %>
+  </div>
+
+  <div class="field">
+    <%= f.label :source %><br />
+    <%= f.text_field :source %>
+  </div>
+
+  <% if @problem.ptype == 1 %>
+    <div class="form-group">
+      <%= f.label :sjcode, raw('Special Judge Code ( <code>argv[1]: testee output, argv[2]: testdata input, argv[3]: testdata output, output 0 for AC otherwise WA</code> )') %>
+      <%= f.text_area :sjcode %>
+    </div>
+  <% end %>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

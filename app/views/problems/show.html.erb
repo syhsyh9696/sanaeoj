@@ -1,0 +1,44 @@
+<h2><%= @problem.title %></h2>
+
+
+<div>
+<p>时间限制:<%= @problem.timelimit %></p>
+<p>内存限制:<%= @problem.memlimit %></p>
+</div>
+
+<div>
+<h3>题目描述</h3>
+<%= markdown @problem.description %>
+</div>
+
+
+
+<div>
+<h3>输入</h3>
+<%= markdown @problem.input %>
+</div>
+
+<div>
+<h3>输出</h3>
+<%= markdown @problem.output %>
+</div>
+
+<div>
+<h3>样例输入</h3>
+<pre><%= @problem.samplein %></pre>
+</div>
+
+<div>
+<h3>样例输出</h3>
+<pre><%= @problem.sampleout %></pre>
+</div>
+
+<div>
+<h3>提示</h3>
+<%= @problem.hint %>
+</div>
+
+<div>
+<h3>来源</h3>
+<%= @problem.source %>
+</div>
